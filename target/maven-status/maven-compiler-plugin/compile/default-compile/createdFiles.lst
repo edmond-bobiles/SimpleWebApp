@@ -1,0 +1,5 @@
+com\mycompany\simplewebapp\AdminServlet.class
+com\mycompany\simplewebapp\JDBC.class
+com\mycompany\simplewebapp\TestJDBCConnection.class
+com\mycompany\simplewebapp\Try.class
+com\mycompany\simplewebapp\LoginServlet.class
