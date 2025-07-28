@@ -2,3 +2,4 @@ model\JDBC.class
 controllers\AdminServlet.class
 controllers\AdminReport.class
 controllers\LoginServlet.class
+controllers\LogoutServlet.class

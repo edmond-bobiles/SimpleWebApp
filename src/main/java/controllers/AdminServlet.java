@@ -17,21 +17,21 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-    HttpSession session = request.getSession(false);
-    
-    // Checks if user is an admind and is logged in
-    if (session == null || !"admin".equals(session.getAttribute("user_role"))) {
-        response.sendRedirect(request.getContextPath() + "/login");
-        return;
-    }
+        HttpSession session = request.getSession(false);
 
-    try {
-        ResultSet users = jdbc.getAllUsers();
-        request.setAttribute("results", users);
-        request.getRequestDispatcher("/views/admin.jsp").forward(request, response);
-    } catch (SQLException e) {
-        request.setAttribute("error", "Database error");
-        request.getRequestDispatcher("/views/error.jsp").forward(request, response);
+        // Checks if user is an admind and is logged in
+        if (session == null || !"admin".equals(session.getAttribute("user_role"))) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        try {
+            ResultSet users = jdbc.getAllUsers();
+            request.setAttribute("results", users);
+            request.getRequestDispatcher("/views/admin.jsp").forward(request, response);
+        } catch (SQLException e) {
+            request.setAttribute("error", "Database error");
+            request.getRequestDispatcher("/views/error.jsp").forward(request, response);
+        }
     }
-}
 }

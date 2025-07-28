@@ -32,7 +32,7 @@
                             <a class="nav-link fs-4" href="adminReport">Report</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-4" href="signout">Sign Out</a>
+                            <a class="nav-link fs-4" href="${pageContext.request.contextPath}/logout">Logout</a>
                         </li>
                     </ul>
                 </div>
