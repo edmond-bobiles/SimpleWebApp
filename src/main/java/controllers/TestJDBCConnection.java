@@ -1,4 +1,4 @@
-package com.mycompany.simplewebapp;
+package controllers;
 
 import java.sql.*;
 

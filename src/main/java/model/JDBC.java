@@ -1,4 +1,4 @@
-package com.mycompany.simplewebapp;
+package model;
 
 import java.sql.*;
 
@@ -20,10 +20,10 @@ public class JDBC {
             System.err.println("Connected to database: " + databaseName);
 
         } catch (ClassNotFoundException e) {
-            System.err.println("MySQL JDBC Driver not found!");
+            System.err.println("Derby JDBC Driver not found!");
             e.printStackTrace();
         } catch (SQLException e) {
-            System.err.println("Failed to connect to MySQL database!");
+            System.err.println("Failed to connect to Derby database!");
             e.printStackTrace();
         }
     }
