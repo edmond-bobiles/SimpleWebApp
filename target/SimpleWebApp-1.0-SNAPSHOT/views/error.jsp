@@ -11,7 +11,9 @@
             <div class="alert alert-danger text-center">
                 <%= request.getAttribute("error") %>
             </div>
-            <a href="${pageContext.request.contextPath}/login" class="btn btn-primary w-100">Return to Login</a>
+            <div class="d-flex justify-content-center">
+                <a href="${pageContext.request.contextPath}/login" class="btn btn-primary w-50">Return to Login</a>
+            </div>
         </div>
     </body>
 </html>
