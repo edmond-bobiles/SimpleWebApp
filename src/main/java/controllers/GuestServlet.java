@@ -19,13 +19,13 @@ public class GuestServlet extends HttpServlet {
         throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        // Check if user is logged in and is a guest
+        // Checks if user is logged in and is a guest
         if (session == null || !"guest".equals(session.getAttribute("user_role"))) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
-        // Get current username from session
+        // Gets current username from session
         String username = (String) session.getAttribute("username");
         if (username == null) {
             response.sendRedirect(request.getContextPath() + "/login");
@@ -33,7 +33,7 @@ public class GuestServlet extends HttpServlet {
         }
 
         try {
-            // Get only the current guest's records
+            // Gets only the current guest's records
             ResultSet user = jdbc.getUserRecords(username);
             request.setAttribute("results", user);
             request.getRequestDispatcher("/views/guest.jsp").forward(request, response);
