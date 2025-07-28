@@ -33,37 +33,39 @@
         <div class="container mt-5">
             <h1 class="text-center mb-4">User Records</h1>
 
-            <table class="table table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Country</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        ResultSet results = (ResultSet) request.getAttribute("results");
-                        if (results != null) {
-                            while (results.next()) {
-                    %>
-                    <tr>
-                        <td><%= results.getString("name") %></td>
-                        <td><%= results.getInt("age") %></td>
-                        <td><%= results.getString("country") %></td>
-                    </tr>
-                    <%
+            <div class="mx-auto" style="width: 600px;">
+                <table class="table table-striped text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            ResultSet results = (ResultSet) request.getAttribute("results");
+                            if (results != null) {
+                                while (results.next()) {
+                        %>
+                        <tr>
+                            <td><%= results.getString("name") %></td>
+                            <td><%= results.getInt("age") %></td>
+                            <td><%= results.getString("country") %></td>
+                        </tr>
+                        <%
+                                }
+                            } else {
+                        %>
+                        <tr>
+                            <td colspan="3" class="text-center">No records found</td>
+                        </tr>
+                        <%
                             }
-                        } else {
-                    %>
-                    <tr>
-                        <td colspan="3" class="text-center">No records found</td>
-                    </tr>
-                    <%
-                        }
-                    %>
-                </tbody>
-            </table>
+                        %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
