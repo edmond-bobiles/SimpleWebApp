@@ -25,6 +25,14 @@
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>GuestServlet</servlet-name>
+        <servlet-class>controllers.GuestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GuestServlet</servlet-name>
+        <url-pattern>/guest</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AdminReportServlet</servlet-name>
         <servlet-class>controllers.AdminReport</servlet-class>
     </servlet>

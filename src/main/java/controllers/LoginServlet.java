@@ -34,20 +34,22 @@ public class LoginServlet extends HttpServlet {
     String password = request.getParameter("password");
 
     try {
-        ResultSet rs = jdbc.getUser(username, password);
+        ResultSet rs = jdbc.getUserCredentials(username, password);
 
         if (rs.next()) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             session.setAttribute("user_role", rs.getString("user_role"));
             
-            // Checks what role 
+            // Checks whether admin or guest
             if ("admin".equals(rs.getString("user_role"))) {
-                ResultSet users = jdbc.getAllUsers();
+                ResultSet users = jdbc.getAllUsersRecords();
                 request.setAttribute("results", users);
                 request.getRequestDispatcher("/views/admin.jsp").forward(request, response);
             } else {
-                response.sendRedirect(request.getContextPath() + "/views/guest.jsp");
+                ResultSet guestRecord = jdbc.getUserRecords(username);
+                request.setAttribute("results", guestRecord);
+                request.getRequestDispatcher("/views/guest.jsp").forward(request, response);
             }
         } else {
             request.setAttribute("error", "Invalid username or password");

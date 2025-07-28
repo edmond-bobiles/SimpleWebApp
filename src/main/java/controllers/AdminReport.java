@@ -25,7 +25,7 @@ public class AdminReport extends HttpServlet {
         
         try {
             // To be modified later
-            ResultSet reportData = jdbc.getAllUsers(); 
+            ResultSet reportData = jdbc.getAllUsersRecords(); 
             request.setAttribute("reportData", reportData);
             request.getRequestDispatcher("/views/adminReport.jsp").forward(request, response);
         } catch(SQLException e) {

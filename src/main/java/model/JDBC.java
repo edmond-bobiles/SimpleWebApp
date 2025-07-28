@@ -15,17 +15,24 @@ public class JDBC {
         }
     }
 
-    public ResultSet getAllUsers() throws SQLException {
+    public ResultSet getAllUsersRecords() throws SQLException {
         String sql = "SELECT name, age, country FROM account ORDER BY name";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         return pstmt.executeQuery();
     }
 
-    public ResultSet getUser(String username, String password) throws SQLException {
-        String sqlStr = "SELECT * FROM account WHERE user_name = ? AND password = ?";
-        PreparedStatement pstmt = conn.prepareStatement(sqlStr);
+    public ResultSet getUserCredentials(String username, String password) throws SQLException {
+        String sql = "SELECT * FROM account WHERE user_name = ? AND password = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, username);
         pstmt.setString(2, password);
+        return pstmt.executeQuery();
+    }
+
+    public ResultSet getUserRecords(String username) throws SQLException {
+        String sql = "SELECT name, age, country FROM account WHERE user_name = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, username);  // Bind the username parameter
         return pstmt.executeQuery();
     }
 

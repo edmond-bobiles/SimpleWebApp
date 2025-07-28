@@ -19,14 +19,15 @@ public class AdminServlet extends HttpServlet {
         throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        // Checks if user is an admind and is logged in
+        // Checks if user is logged in and an admin
         if (session == null || !"admin".equals(session.getAttribute("user_role"))) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
         try {
-            ResultSet users = jdbc.getAllUsers();
+            // Gets all the records
+            ResultSet users = jdbc.getAllUsersRecords();
             request.setAttribute("results", users);
             request.getRequestDispatcher("/views/admin.jsp").forward(request, response);
         } catch (SQLException e) {
