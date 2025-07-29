@@ -20,6 +20,12 @@ public class JDBC {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         return pstmt.executeQuery();
     }
+    
+    public ResultSet getAllUserRolesRecords() throws SQLException {
+        String sql = "SELECT user_name, user_role FROM account ORDER BY name";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        return pstmt.executeQuery();
+    }
 
     public ResultSet getUserCredentials(String username, String password) throws SQLException {
         String sql = "SELECT * FROM account WHERE user_name = ? AND password = ?";

@@ -2,11 +2,11 @@
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Admin Report</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Admin Report</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
             body {
                 background-color: #f5f8fa;
             }
@@ -14,8 +14,8 @@
                 max-width: 600px;
                 margin-top: 20px;
             }
-    </style>
-</head>
+        </style>
+    </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid"> 
@@ -38,11 +38,12 @@
                 </div>
             </div>
         </nav>
-        
-        <%-- Code here --%> 
-        <div class="container mt-5">  
-            <%-- Code here --%> 
-            <h1 class="text-center mb-4">Report</h1>
+
+        <div class="text-center">
+            <a href="${pageContext.request.contextPath}/AdminReportDownload" class="btn btn-primary">
+                Download PDF Report
+            </a>
         </div>
+
     </body>
 </html>

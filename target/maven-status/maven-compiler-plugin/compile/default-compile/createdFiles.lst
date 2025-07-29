@@ -1,4 +1,6 @@
+controllers\AdminReportDownload$FooterHandler.class
 model\JDBC.class
+controllers\AdminReportDownload.class
 controllers\AdminServlet.class
 controllers\GuestServlet.class
 controllers\AdminReport.class
