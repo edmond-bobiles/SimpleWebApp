@@ -1,6 +1,7 @@
-C:\Users\edjbo\Documents\NetBeansProjects\SimpleWebApp\src\main\java\controllers\LoginServlet.java
-C:\Users\edjbo\Documents\NetBeansProjects\SimpleWebApp\src\main\java\controllers\LogoutServlet.java
-C:\Users\edjbo\Documents\NetBeansProjects\SimpleWebApp\src\main\java\controllers\AdminReport.java
-C:\Users\edjbo\Documents\NetBeansProjects\SimpleWebApp\src\main\java\controllers\GuestServlet.java
-C:\Users\edjbo\Documents\NetBeansProjects\SimpleWebApp\src\main\java\controllers\AdminServlet.java
-C:\Users\edjbo\Documents\NetBeansProjects\SimpleWebApp\src\main\java\model\JDBC.java
+D:\Downloads\edmond\SimpleWebApp\src\main\java\controllers\CaptchaServlet.java
+D:\Downloads\edmond\SimpleWebApp\src\main\java\controllers\AdminReport.java
+D:\Downloads\edmond\SimpleWebApp\src\main\java\controllers\LogoutServlet.java
+D:\Downloads\edmond\SimpleWebApp\src\main\java\model\JDBC.java
+D:\Downloads\edmond\SimpleWebApp\src\main\java\controllers\LoginServlet.java
+D:\Downloads\edmond\SimpleWebApp\src\main\java\controllers\AdminServlet.java
+D:\Downloads\edmond\SimpleWebApp\src\main\java\controllers\GuestServlet.java

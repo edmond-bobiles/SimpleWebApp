@@ -1,5 +1,6 @@
 model\JDBC.class
 controllers\AdminServlet.class
+controllers\CaptchaServlet.class
 controllers\GuestServlet.class
 controllers\AdminReport.class
 controllers\LoginServlet.class
