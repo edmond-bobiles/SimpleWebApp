@@ -20,9 +20,6 @@
                             <a class="nav-link fs-4" href="admin">Records</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-4" href="adminReport">Report</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link fs-4" href="${pageContext.request.contextPath}/logout">Logout</a>
                         </li>
                     </ul>
@@ -65,6 +62,12 @@
                         %>
                     </tbody>
                 </table>
+            </div>
+                    
+            <div class="text-center mt-4">
+                <a href="${pageContext.request.contextPath}/AdminReportDownload" class="btn btn-primary">
+                    Download PDF Report
+                </a>
             </div>
         </div>
     </body>

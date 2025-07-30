@@ -18,6 +18,12 @@
     
     <dependencies>
         <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.9</version>
+        </dependency>
+
+        <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
             <version>${jakartaee}</version>
@@ -28,11 +34,6 @@
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
             <version>10.14.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf.maven</groupId>
-            <artifactId>itextpdf</artifactId>
-            <version>5.5.9</version>
         </dependency>
     </dependencies>
     
