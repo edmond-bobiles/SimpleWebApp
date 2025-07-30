@@ -42,8 +42,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("user_role", rs.getString("user_role"));
 
                 if ("admin".equals(rs.getString("user_role"))) {
-                    ResultSet users = jdbc.getAllUsersRecords();
-                    request.setAttribute("results", users);
+                   
                     request.getRequestDispatcher("/views/captcha.jsp").forward(request, response);
                 } else {
                     ResultSet guestRecord = jdbc.getUserRecords(username);
