@@ -22,7 +22,7 @@ public class JDBC {
     }
     
     public ResultSet getAllUserRolesRecords() throws SQLException {
-        String sql = "SELECT user_name, user_role FROM account ORDER BY name";
+        String sql = "SELECT * FROM account ORDER BY name";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         return pstmt.executeQuery();
     }
