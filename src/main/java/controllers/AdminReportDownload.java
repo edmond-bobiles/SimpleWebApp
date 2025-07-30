@@ -67,44 +67,58 @@ public class AdminReportDownload extends HttpServlet {
             h1.setBackgroundColor(BaseColor.LIGHT_GRAY);
             h1.setPaddingTop(10f);
             h1.setPaddingBottom(10f);
-            h1.setMinimumHeight(15f);
             table.addCell(h1);
 
             PdfPCell h2 = new PdfPCell(new Phrase("Role", headerFont));
             h2.setBackgroundColor(BaseColor.LIGHT_GRAY);
             h2.setPaddingTop(10f);
             h2.setPaddingBottom(10f);
-            h2.setMinimumHeight(15f);
             table.addCell(h2);
-            
+
             PdfPCell h3 = new PdfPCell(new Phrase("Name", headerFont));
             h3.setBackgroundColor(BaseColor.LIGHT_GRAY);
             h3.setPaddingTop(10f);
             h3.setPaddingBottom(10f);
-            h3.setMinimumHeight(15f);
             table.addCell(h3);
-            
+
             PdfPCell h4 = new PdfPCell(new Phrase("Age", headerFont));
             h4.setBackgroundColor(BaseColor.LIGHT_GRAY);
             h4.setPaddingTop(10f);
             h4.setPaddingBottom(10f);
-            h4.setMinimumHeight(15f);
             table.addCell(h4);
-            
+
             PdfPCell h5 = new PdfPCell(new Phrase("Country", headerFont));
             h5.setBackgroundColor(BaseColor.LIGHT_GRAY);
             h5.setPaddingTop(10f);
             h5.setPaddingBottom(10f);
-            h5.setMinimumHeight(15f);
             table.addCell(h5);
 
             ResultSet rs = jdbc.getAllUserRolesRecords();
             while (rs.next()) {
-                table.addCell(new Phrase(rs.getString("USER_NAME"), textFont));
-                table.addCell(new Phrase(rs.getString("USER_ROLE"), textFont));
-                table.addCell(new Phrase(rs.getString("NAME"), textFont));
-                table.addCell(new Phrase(rs.getString("AGE"), textFont));
-                table.addCell(new Phrase(rs.getString("COUNTRY"), textFont));
+                PdfPCell c1 = new PdfPCell(new Phrase(rs.getString("USER_NAME"), textFont));
+                c1.setPaddingTop(5f);
+                c1.setPaddingBottom(5f);
+                table.addCell(c1);
+
+                PdfPCell c2 = new PdfPCell(new Phrase(rs.getString("USER_ROLE"), textFont));
+                c2.setPaddingTop(5f);
+                c2.setPaddingBottom(5f);
+                table.addCell(c2);
+
+                PdfPCell c3 = new PdfPCell(new Phrase(rs.getString("NAME"), textFont));
+                c3.setPaddingTop(5f);
+                c3.setPaddingBottom(5f);
+                table.addCell(c3);
+
+                PdfPCell c4 = new PdfPCell(new Phrase(rs.getString("AGE"), textFont));
+                c4.setPaddingTop(5f);
+                c4.setPaddingBottom(5f);
+                table.addCell(c4);
+
+                PdfPCell c5 = new PdfPCell(new Phrase(rs.getString("COUNTRY"), textFont));
+                c5.setPaddingTop(5f);
+                c5.setPaddingBottom(5f);
+                table.addCell(c5);
             }
 
             document.add(table);
