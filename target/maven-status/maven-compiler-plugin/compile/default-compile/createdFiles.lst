@@ -1,5 +1,7 @@
 controllers\AdminReportDownload$FooterHandler.class
+controllers\OneTimeEncryption.class
 model\JDBC.class
+model\Security.class
 controllers\AdminReportDownload.class
 controllers\AdminServlet.class
 controllers\GuestServlet.class

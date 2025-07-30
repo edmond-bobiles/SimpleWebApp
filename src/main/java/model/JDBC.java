@@ -26,6 +26,20 @@ public class JDBC {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         return pstmt.executeQuery();
     }
+    
+    public ResultSet getAllUnencryptedUsers() throws SQLException {
+        String sql = "SELECT user_name, password FROM account WHERE encrypted = 0";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        return pstmt.executeQuery();
+    }
+    
+    public void changePass(String user_name, String newPassword) throws SQLException {
+        String sql = "UPDATE account SET password = ?, encrypted = 1 WHERE user_name = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, newPassword);
+        pstmt.setString(2, user_name);
+        pstmt.executeUpdate();
+    }
 
     public ResultSet getUserCredentials(String username, String password) throws SQLException {
         String sql = "SELECT * FROM account WHERE user_name = ? AND password = ?";
