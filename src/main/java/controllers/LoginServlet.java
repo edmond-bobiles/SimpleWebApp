@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 
                 if ("admin".equals(role)) {
                     request.setAttribute("results", jdbc.getAllUsersRecords());
-                    request.getRequestDispatcher("/views/admin.jsp").forward(request, response);
+                    request.getRequestDispatcher("/views/captcha.jsp").forward(request, response);
                 } else {
                     request.setAttribute("results", jdbc.getUserRecords(username));
                     request.getRequestDispatcher("/views/guest.jsp").forward(request, response);

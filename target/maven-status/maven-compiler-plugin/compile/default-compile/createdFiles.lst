@@ -4,6 +4,7 @@ model\JDBC.class
 model\Security.class
 controllers\AdminReportDownload.class
 controllers\AdminServlet.class
+controllers\CaptchaServlet.class
 controllers\GuestServlet.class
 controllers\AdminReport.class
 controllers\LoginServlet.class
