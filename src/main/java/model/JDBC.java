@@ -56,6 +56,22 @@ public class JDBC {
         return pstmt.executeQuery();
     }
 
+    public String getEncryptedPassword(String username) throws SQLException {
+        String sql = "SELECT password FROM account WHERE user_name = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, username);
+        ResultSet rs = pstmt.executeQuery();
+        return rs.next() ? rs.getString("password") : null;
+    }
+
+    public String getUserRole(String username) throws SQLException {
+        String sql = "SELECT user_role FROM account WHERE user_name = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, username);
+        ResultSet rs = pstmt.executeQuery();
+        return rs.next() ? rs.getString("user_role") : null;
+    }
+    
     public void close() {
         try {
             if (conn != null && !conn.isClosed()) {

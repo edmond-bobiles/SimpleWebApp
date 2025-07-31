@@ -1,8 +1,8 @@
 package controllers;
 
 import model.JDBC;
+import model.Security;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -31,32 +31,36 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String inputPassword = request.getParameter("password");
 
         try {
-            ResultSet rs = jdbc.getUserCredentials(username, password);
+            // Gets the encrypted password from db
+            String storedEncrypted = jdbc.getEncryptedPassword(username);
 
-            if (rs.next()) {
+            // Encrypts the user input password
+            String encryptedInput = Security.encrypt(inputPassword);
+
+            // Compares the encrypted password from db and encrypted input password
+            if (storedEncrypted != null && storedEncrypted.equals(encryptedInput)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
-                session.setAttribute("user_role", rs.getString("user_role"));
 
-                if ("admin".equals(rs.getString("user_role"))) {
-                    ResultSet users = jdbc.getAllUsersRecords();
-                    request.setAttribute("results", users);
+                // Gets the user role
+                String role = jdbc.getUserRole(username);
+                session.setAttribute("user_role", role);
+
+                if ("admin".equals(role)) {
+                    request.setAttribute("results", jdbc.getAllUsersRecords());
                     request.getRequestDispatcher("/views/admin.jsp").forward(request, response);
                 } else {
-                    ResultSet guestRecord = jdbc.getUserRecords(username);
-                    request.setAttribute("results", guestRecord);
+                    request.setAttribute("results", jdbc.getUserRecords(username));
                     request.getRequestDispatcher("/views/guest.jsp").forward(request, response);
                 }
             } else {
-                // Redirect to error page for invalid credentials
                 request.setAttribute("error", "Invalid username or password");
                 request.getRequestDispatcher("/views/error.jsp").forward(request, response);
             }
         } catch (SQLException e) {
-            // Redirect to error page for database errors
             request.setAttribute("error", "Database error: " + e.getMessage());
             request.getRequestDispatcher("/views/error.jsp").forward(request, response);
         }
