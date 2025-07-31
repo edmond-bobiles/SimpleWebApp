@@ -30,8 +30,7 @@
 
         <form action="${pageContext.request.contextPath}/captcha" method="post">
             <div class="mb-3">
-                <label for="userInput" class="form-label">Enter CAPTCHA</label>
-                <input type="text" class="form-control" id="userInput" name="userInput" required>
+                <input type="text" class="form-control" placeholder="Enter captcha" id="userInput" name="userInput" required>
             </div>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary w-40">Verify</button>
