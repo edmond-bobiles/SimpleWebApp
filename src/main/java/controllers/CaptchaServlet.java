@@ -53,7 +53,8 @@ public class CaptchaServlet extends HttpServlet {
                 request.setAttribute("results", users);
                 request.getRequestDispatcher("views/admin.jsp").forward(request, response);
             } else {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("views/error.jsp");
+                request.setAttribute("error", "Incorrect CAPTCHA.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("views/errorCaptcha.jsp");
                 dispatcher.forward(request, response);
             }
 

@@ -1,34 +1,42 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.Random" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%
-    // Generates captcha
+    // Generate captcha string
     String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     StringBuilder captcha = new StringBuilder();
     Random random = new Random();
 
-    // Generated CAPTCHA is of length 6
     for (int i = 0; i < 6; i++) {
         captcha.append(chars.charAt(random.nextInt(chars.length())));
     }
 
     session.setAttribute("captcha", captcha.toString());
 %>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>CAPTCHA Page</title>
-    </head>
-    <body>
-        <h1>Captcha</h1>
-        <b><%= session.getAttribute("captcha")    %> </b>
+<head>
+    <meta charset="UTF-8">
+    <title>CAPTCHA Verification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card shadow-lg p-4" style="width: 400px;">
+        <h3 class="text-center mb-4">Verification</h3>
         
-        <br><br>
+        <div class="alert alert-secondary text-center fs-4 fw-bold">
+            <%= session.getAttribute("captcha") %>
+        </div>
+
         <form action="${pageContext.request.contextPath}/captcha" method="post">
-            Enter CAPTCHA <input type="text" name="userInput"> <br><br>
-            <input type="submit" value="Verify">
+            <div class="mb-3">
+                <label for="userInput" class="form-label">Enter CAPTCHA</label>
+                <input type="text" class="form-control" id="userInput" name="userInput" required>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary w-40">Verify</button>
+            </div>
         </form>
-    </body>
+    </div>
+</body>
 </html>
