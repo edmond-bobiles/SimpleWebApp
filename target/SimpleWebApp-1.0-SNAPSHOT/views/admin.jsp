@@ -41,6 +41,8 @@
                 <table class="table table-striped text-center">
                     <thead class="table-dark">
                         <tr>
+                            <th>Username</th>
+                            <th>Role</th>
                             <th>Name</th>
                             <th>Age</th>
                             <th>Country</th>
@@ -53,6 +55,8 @@
                                 while (results.next()) {
                         %>
                         <tr>
+                            <td><%= results.getString("user_name") %></td>
+                            <td><%= results.getString("user_role") %></td>
                             <td><%= results.getString("name") %></td>
                             <td><%= results.getInt("age") %></td>
                             <td><%= results.getString("country") %></td>

@@ -16,7 +16,7 @@ public class JDBC {
     }
 
     public ResultSet getAllUsersRecords() throws SQLException {
-        String sql = "SELECT name, age, country FROM account ORDER BY name";
+        String sql = "SELECT user_name, user_role, name, age, country FROM account ORDER BY name";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         return pstmt.executeQuery();
     }
@@ -50,9 +50,9 @@ public class JDBC {
     }
 
     public ResultSet getUserRecords(String username) throws SQLException {
-        String sql = "SELECT name, age, country FROM account WHERE user_name = ?";
+        String sql = "SELECT user_name, user_role, name, age, country FROM account WHERE user_name = ? ORDER BY name";
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, username);  // Bind the username parameter
+        pstmt.setString(1, username); 
         return pstmt.executeQuery();
     }
 

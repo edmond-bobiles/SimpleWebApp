@@ -31,12 +31,14 @@
         </nav>
                 
         <div class="container mt-5">
-            <h1 class="text-center mb-4">User Records</h1>
+            <h1 class="text-center mb-4">User Record</h1>
 
             <div class="mx-auto" style="width: 600px;">
                 <table class="table table-striped text-center">
                     <thead class="table-dark">
                         <tr>
+                            <th>Username</th>
+                            <th>Role</th>
                             <th>Name</th>
                             <th>Age</th>
                             <th>Country</th>
@@ -49,6 +51,8 @@
                                 
                         %>
                         <tr>
+                            <td><%= results.getString("user_name") %></td>
+                            <td><%= results.getString("user_role") %></td>
                             <td><%= results.getString("name") %></td>
                             <td><%= results.getInt("age") %></td>
                             <td><%= results.getString("country") %></td>

@@ -1,23 +1,17 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controllers;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import model.JDBC;
-import java.sql.SQLException;
-import java.sql.ResultSet;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import org.json.JSONObject;
+import model.JDBC;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CaptchaServlet extends HttpServlet {
-    
+
     private JDBC jdbc;
 
     @Override
@@ -25,48 +19,44 @@ public class CaptchaServlet extends HttpServlet {
         jdbc = new JDBC("1527", "simplewebdb", "app", "app");
     }
 
-    
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        try{
-            ResultSet rs = jdbc.getUserCredentials(username, password);
 
-            // Retrive user input and the stored CAPTCHA
-            String userInput = request.getParameter("userInput");
-            String originalCaptcha = (String) session.getAttribute("captcha");
+        HttpSession session = request.getSession(false);
+        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 
-            // If tama or mali ung captcha mo, ireredirect ka sa error page or sa successAdmin
-            String result;
-            if (userInput != null && originalCaptcha != null && userInput.equals(originalCaptcha)) {
-                ResultSet users = jdbc.getAllUsersRecords();
-                request.setAttribute("results", users);
-                request.getRequestDispatcher("views/admin.jsp").forward(request, response);
-            } else {
-                request.setAttribute("error", "Incorrect CAPTCHA.");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("views/errorCaptcha.jsp");
-                dispatcher.forward(request, response);
-            }
-
-        } catch (SQLException e){
-           request.setAttribute("error", "Database error: " + e.getMessage());
-           request.getRequestDispatcher("/views/error.jsp").forward(request, response);
+        if (gRecaptchaResponse == null || gRecaptchaResponse.isEmpty()) {
+            request.setAttribute("error", "Captcha verification failed!");
+            request.getRequestDispatcher("/views/captcha.jsp").forward(request, response);
+            return;
         }
+
+        response.sendRedirect(request.getContextPath() + "/admin");
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    private boolean verifyCaptcha(String gRecaptchaResponse) throws IOException {
+        String url = "https://www.google.com/recaptcha/api/siteverify";
+        String params = "secret=YOUR_SECRET_KEY&response=" + gRecaptchaResponse;
 
+        HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
+        con.setRequestMethod("POST");
+        con.setDoOutput(true);
+
+        try (OutputStream os = con.getOutputStream()) {
+            os.write(params.getBytes());
+        }
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String inputLine;
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        JSONObject jsonResponse = new JSONObject(response.toString());
+        return jsonResponse.getBoolean("success");
+    }
 }
