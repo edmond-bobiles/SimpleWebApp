@@ -21,7 +21,6 @@
             <h3>Verification</h3>
         </div>
         
-        <!-- Display error message if exists -->
         <% String error = (String) request.getAttribute("error"); %>
         <% if (error != null) { %>
             <div class="alert alert-danger text-center mb-3">
@@ -36,7 +35,6 @@
             </div>
             
             <div class="d-flex justify-content-center gap-3">
-                <!-- Submit button is now enabled by default -->
                 <button type="submit" id="submit-btn" class="btn btn-primary px-4">Verify & Continue</button>
                 <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger px-4">Logout</a>
             </div>
